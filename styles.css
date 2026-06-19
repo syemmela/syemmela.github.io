@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+:root {
+  --sidebar-width: 22rem;
+}
+
 body {
   min-height: 100vh;
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -14,12 +18,17 @@ body {
   color: #fff;
 }
 
-.landing-page {
+.site {
+  min-height: 100vh;
+}
+
+.sidebar {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  transition: width 0.35s ease, align-items 0.35s ease;
 }
 
 .landing-inner {
@@ -30,6 +39,7 @@ body {
   gap: 2rem;
   width: 100%;
   max-width: 32rem;
+  transition: align-items 0.35s ease, text-align 0.35s ease;
 }
 
 .landing-name {
@@ -37,7 +47,6 @@ body {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
-  text-transform: none;
 }
 
 .landing-role {
@@ -56,18 +65,24 @@ body {
 }
 
 .nav-tab {
+  background: none;
+  border: none;
   color: rgba(255, 255, 255, 0.8);
+  font-family: inherit;
   font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-  text-decoration: none;
+  cursor: pointer;
   padding: 0.35rem 0;
-  transition: color 0.2s;
+  transition: color 0.2s, opacity 0.2s;
 }
 
-.nav-tab:hover {
+.nav-tab:hover,
+.nav-tab.active {
   color: #fff;
+}
+
+.nav-tab:not(.active) {
+  opacity: 0.75;
 }
 
 .landing-social {
@@ -91,6 +106,150 @@ body {
 .landing-social a:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.7);
+}
+
+.content-panel {
+  display: none;
+  min-height: 100vh;
+  padding: 3rem 2rem 4rem;
+  animation: fadeIn 0.35s ease;
+}
+
+.panel {
+  display: none;
+  max-width: 42rem;
+}
+
+.panel.active {
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.subsection-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+}
+
+.panel-lead {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.panel-copy,
+.panel-list,
+.info-block p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+.panel-copy {
+  margin-bottom: 0.5rem;
+}
+
+.panel-list {
+  margin-left: 1.25rem;
+}
+
+.panel-list li {
+  margin-bottom: 0.5rem;
+}
+
+.info-block {
+  margin-bottom: 1.5rem;
+}
+
+.info-block h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site.is-open .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site.is-open .landing-inner {
+  max-width: 16rem;
+}
+
+.site.is-open .landing-name {
+  font-size: 1.5rem;
+}
+
+.site.is-open .landing-role {
+  font-size: 0.9rem;
+}
+
+.site.is-open .content-panel {
+  display: block;
+  margin-left: var(--sidebar-width);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .site.is-open .sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 1.5rem;
+  }
+
+  .site.is-open .content-panel {
+    margin-left: 0;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .site.is-open .landing-inner {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
