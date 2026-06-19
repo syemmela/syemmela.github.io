@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   initCanvas();
   initTheme();
+  initTabs();
   initExpandables();
-  initShowMore();
 });
 
 function initCanvas() {
@@ -15,9 +15,12 @@ function initCanvas() {
   let tasks = [];
   let running = [];
 
+  const panel = canvas.closest(".content-panel");
+
   const resize = () => {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    const rect = panel ? panel.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
+    width = rect.width;
+    height = rect.height;
     canvas.width = width;
     canvas.height = height;
     start();
@@ -111,14 +114,17 @@ function initExpandables() {
   });
 }
 
-function initShowMore() {
-  const button = document.getElementById("showMoreExperience");
-  const hiddenItems = document.querySelectorAll(".experience-hidden");
+function initTabs() {
+  const tabs = document.querySelectorAll(".nav-tab");
+  const panels = document.querySelectorAll(".panel");
 
-  button?.addEventListener("click", () => {
-    const showing = button.dataset.showing === "true";
-    hiddenItems.forEach((item) => item.classList.toggle("visible", !showing));
-    button.dataset.showing = showing ? "false" : "true";
-    button.textContent = showing ? "Show more experiences" : "Show less experiences";
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.panel;
+      tabs.forEach((item) => item.classList.toggle("active", item === tab));
+      panels.forEach((panel) => {
+        panel.classList.toggle("active", panel.id === target);
+      });
+    });
   });
 }
