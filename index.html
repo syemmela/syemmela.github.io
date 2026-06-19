@@ -1,197 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="red">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sid Yemmela | Portfolio</title>
+  <title>Sid Yemmela - Electrical Engineering Student</title>
+  <meta name="description" content="18 | Electrical Engineering student at KSU | Embedded systems, PCB design, and firmware development">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Sid Yemmela</h1>
-    <p>Electrical Engineering Student</p>
-    <p><a href="mailto:sid.yemmela@gmail.com">sid.yemmela@gmail.com</a></p>
-  </header>
+  <div class="bg-glow"></div>
+  <canvas id="artCanvas" aria-hidden="true"></canvas>
 
-  <nav>
-    <ul>
-      <li><a href="#objective">Objective</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#volunteering">Volunteering</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="hero">
+        <div class="info">
+          <h1>Sid Yemmela</h1>
+          <h2>Electrical Engineering Student</h2>
+          <p class="location">📍 Kennesaw, Georgia</p>
+          <div class="social-links">
+            <a href="mailto:sid.yemmela@gmail.com" title="Email">✉️</a>
+            <a href="https://linkedin.com/in/sidyem-31458531b" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
+            <a href="https://github.com/syemmela" target="_blank" rel="noopener noreferrer" title="GitHub">GH</a>
+          </div>
+        </div>
+        <div class="avatar-wrap avatar-frame">
+          <div class="avatar" aria-label="Sid Yemmela">SY</div>
+        </div>
+      </section>
 
-  <main>
-    <section id="objective">
-      <h2>Objective</h2>
-      <p>
-        Electrical Engineering student at Kennesaw State University seeking an internship or
-        entry-level opportunity to apply hands-on experience in embedded systems, PCB design,
-        and firmware development. Skilled in KiCad schematic design, ESP32 microcontroller
-        programming, and C++ firmware for real-time audio and hardware applications.
-      </p>
-    </section>
+      <section>
+        <h3 class="section-title">About</h3>
+        <p class="about-text">
+          18 | EE student at KSU | Embedded systems, PCB design &amp; firmware | Building hardware that actually works
+        </p>
+      </section>
 
-    <section id="education">
-      <h2>Education / Training</h2>
-      <article>
-        <h3>Kennesaw State University</h3>
-        <p>Kennesaw, GA</p>
-        <p>B.S. Electrical Engineering (In Progress)</p>
-        <p>Aug 2026 – Present</p>
-      </article>
-    </section>
+      <section>
+        <h3 class="section-title">Stats</h3>
+        <div class="stats-list">
+          <div class="stat-row">
+            <span class="stat-label">ESP32 MP3 Player</span>
+            <div class="stat-meta">
+              <span>Independent</span>
+              <span class="stat-value">Custom PCB</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Fifth Mile Urban Farms</span>
+            <div class="stat-meta">
+              <span>Work</span>
+              <span class="stat-value">4 years</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">PC Builds</span>
+            <div class="stat-meta">
+              <span>Personal</span>
+              <span class="stat-value">Ongoing</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Robotics</span>
+            <div class="stat-meta">
+              <span>Club</span>
+              <span class="stat-value">Active</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section id="projects">
-      <h2>Project Experience</h2>
+      <section class="theme-controls">
+        <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+        <select class="theme-select" id="themeSelect" aria-label="Choose accent color">
+          <option value="red">Red</option>
+          <option value="pink">Pink</option>
+          <option value="orange">Orange</option>
+          <option value="cyber">Cyberpunk</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+        </select>
+      </section>
+    </aside>
 
-      <article>
-        <h3>Principles of Engineering (10th grade)</h3>
-        <ul>
-          <li>Learned how to CAD using Fusion 360 (plate, train, pen, etc.)</li>
-          <li>Learned how to sketch objects</li>
-          <li>Learned how to make simple machines using VEX parts</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>Digital Electronics (11th grade)</h3>
-        <ul>
-          <li>Learned how to solder PCBs</li>
-          <li>Learned how to make circuits on breadboards and online</li>
-          <li>Learned how to use Arduino chips</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>Computer Science Principles (10th grade)</h3>
-        <ul>
-          <li>Learned basics of Java</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>Computer Science A (11th grade)</h3>
-        <ul>
-          <li>Learned Object-Oriented Programming (OOP)</li>
-        </ul>
-      </article>
-
-      <article>
-        <h3>Portable ESP32 MP3 Player (Independent Project)</h3>
-        <ul>
-          <li>
-            Designed custom PCB schematic in KiCad integrating ESP32-WROOM-32E, PCM5102A I2S
-            DAC, IP5306 battery management IC, SSD1306 OLED display, microSD card slot, and
-            USB-C with CP2102N auto-programming circuit
+    <div class="content">
+      <section>
+        <h3 class="section-title">Experience</h3>
+        <ul class="timeline">
+          <li class="timeline-item">
+            <div class="timeline-date">2025 - Present</div>
+            <div class="timeline-body">
+              <h3>Independent Project @ ESP32 MP3 Player</h3>
+              <p class="subtitle">Personal - Hardware &amp; Firmware</p>
+              <div class="expandable" id="exp-esp32">
+                <h4>Summary:</h4>
+                <ul>
+                  <li>Designed custom PCB in KiCad with ESP32-WROOM-32E, PCM5102A I2S DAC, IP5306 battery management, SSD1306 OLED, microSD, and USB-C with CP2102N auto-programming.</li>
+                </ul>
+                <h4>Highlights:</h4>
+                <ul>
+                  <li>Built and tested breadboard prototype before PCB fabrication with voltage divider battery monitoring.</li>
+                  <li>Wrote C++ firmware for real-time MP3 decoding, I2S audio output, and Bluetooth A2DP streaming.</li>
+                  <li>Used FreeRTOS dual-core task management with rotary encoder volume control and OLED UI navigation.</li>
+                </ul>
+              </div>
+              <button class="show-more" data-target="exp-esp32" type="button">Show more</button>
+              <div class="tags">
+                <span class="tag">KiCad</span>
+                <span class="tag">ESP32</span>
+                <span class="tag">C++</span>
+                <span class="tag">FreeRTOS</span>
+                <span class="tag">I2S</span>
+              </div>
+            </div>
           </li>
-          <li>
-            Implemented voltage divider circuits for battery percentage monitoring and VBUS
-            charging detection; built and tested prototype on breadboard before PCB fabrication
+
+          <li class="timeline-item">
+            <div class="timeline-date">2021 - 2025</div>
+            <div class="timeline-body">
+              <h3>Assistant @ Fifth Mile Urban Farms</h3>
+              <p class="subtitle">Atlanta, GA - In-person</p>
+              <div class="expandable" id="exp-farm">
+                <h4>Summary:</h4>
+                <ul>
+                  <li>Managed seed catalog, inventory, soil prep, germination, planting calendar, harvesting, and plant care.</li>
+                </ul>
+                <h4>Responsibilities:</h4>
+                <ul>
+                  <li>Managed Instagram and Facebook pages for the farm.</li>
+                  <li>Supported day-to-day operations including weeding and general farm work.</li>
+                </ul>
+              </div>
+              <button class="show-more" data-target="exp-farm" type="button">Show more</button>
+              <div class="tags">
+                <span class="tag">Operations</span>
+                <span class="tag">Social Media</span>
+                <span class="tag">Inventory</span>
+              </div>
+            </div>
           </li>
-          <li>
-            Wrote C++ firmware for real-time MP3 decoding and I2S audio output; developed
-            Bluetooth A2DP audio streaming with dynamic mode switching between wired and
-            wireless output
+
+          <li class="timeline-item">
+            <div class="timeline-date">Ongoing</div>
+            <div class="timeline-body">
+              <h3>PC Builder @ Personal Projects</h3>
+              <p class="subtitle">Remote</p>
+              <div class="expandable" id="exp-pc">
+                <h4>Summary:</h4>
+                <ul>
+                  <li>Build custom PCs for myself and friends while staying current on hardware configurations.</li>
+                </ul>
+                <h4>Responsibilities:</h4>
+                <ul>
+                  <li>Research components, install software and hardware, and troubleshoot system issues.</li>
+                </ul>
+              </div>
+              <button class="show-more" data-target="exp-pc" type="button">Show more</button>
+              <div class="tags">
+                <span class="tag">Hardware</span>
+                <span class="tag">Troubleshooting</span>
+                <span class="tag">Assembly</span>
+              </div>
+            </div>
           </li>
-          <li>
-            Used FreeRTOS dual-core task management for concurrent MP3 decoding and Bluetooth
-            streaming; implemented rotary encoder interrupt-driven volume control and UI
-            navigation on OLED display
+
+          <li class="timeline-item experience-hidden hidden-items">
+            <div class="timeline-date">High School</div>
+            <div class="timeline-body">
+              <h3>Digital Electronics @ Walton High School</h3>
+              <p class="subtitle">11th grade</p>
+              <ul>
+                <li>Learned PCB soldering, breadboard circuits, and Arduino programming.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Arduino</span>
+                <span class="tag">Soldering</span>
+                <span class="tag">Circuits</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item experience-hidden hidden-items">
+            <div class="timeline-date">High School</div>
+            <div class="timeline-body">
+              <h3>Principles of Engineering @ Walton High School</h3>
+              <p class="subtitle">10th grade</p>
+              <ul>
+                <li>CAD with Fusion 360, technical sketching, and simple machines with VEX parts.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Fusion 360</span>
+                <span class="tag">VEX</span>
+                <span class="tag">CAD</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item experience-hidden hidden-items">
+            <div class="timeline-date">High School</div>
+            <div class="timeline-body">
+              <h3>Computer Science @ Walton High School</h3>
+              <p class="subtitle">10th - 11th grade</p>
+              <ul>
+                <li>Java fundamentals and object-oriented programming.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">OOP</span>
+              </div>
+            </div>
           </li>
         </ul>
-      </article>
-    </section>
+        <button class="show-more" id="showMoreExperience" data-showing="false" type="button">Show more experiences</button>
+      </section>
 
-    <section id="work">
-      <h2>After School Work</h2>
+      <section>
+        <h3 class="section-title">Education</h3>
+        <div class="education-item">
+          <h3><a href="https://www.kennesaw.edu/" target="_blank" rel="noopener noreferrer">Kennesaw State University</a></h3>
+          <p class="meta">B.S. Electrical Engineering (In Progress)</p>
+          <p class="date">Aug 2026 - Present</p>
+        </div>
+        <h4 style="margin-top: 1rem; margin-bottom: 0.75rem;">Certificates &amp; Courses</h4>
+        <div class="education-item">
+          <h3>Seth Bonder Course</h3>
+          <p class="meta">Georgia Tech - Python fundamentals</p>
+        </div>
+      </section>
 
-      <article>
-        <h3>Fifth Mile Urban Farms</h3>
-        <ul>
-          <li>
-            Managing seeds catalogue and keeping inventory, preparing soil and seeds
-            germination, manage calendar for seed planting, harvesting, plant care and
-            weeding, other work around the farm
-          </li>
-          <li>Managing Instagram and Facebook pages for farm</li>
-        </ul>
-      </article>
+      <section>
+        <h3 class="section-title">Volunteering</h3>
+        <div class="education-item">
+          <h3>Books For Africa</h3>
+          <p class="meta">Organizing books for kids in Africa to read.</p>
+        </div>
+        <div class="education-item">
+          <h3>Foster Care Organization</h3>
+          <p class="meta">Organizing clothes, toys, and baby carriers donated for foster care families.</p>
+        </div>
+      </section>
 
-      <article>
-        <h3>PC Building</h3>
-        <ul>
-          <li>Build my own PC and help friends to build their PCs</li>
-          <li>Research and study hardware configuration to keep myself up to date</li>
-          <li>Install software and hardware and fix any issues</li>
-        </ul>
-      </article>
-    </section>
+      <section>
+        <h3 class="section-title">Skills</h3>
+        <div class="skills-grid">
+          <span class="tag">KiCad PCB Design</span>
+          <span class="tag">Fusion 360 CAD</span>
+          <span class="tag">Embedded C++</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">FreeRTOS</span>
+          <span class="tag">SPI/I2S/UART</span>
+          <span class="tag">AutoCAD</span>
+          <span class="tag">Java</span>
+          <span class="tag">HTML</span>
+          <span class="tag">Python</span>
+          <span class="tag">MS Office</span>
+          <span class="tag">Problem Solving</span>
+        </div>
+      </section>
 
-    <section id="volunteering">
-      <h2>Volunteering</h2>
-      <ul>
-        <li>Books For Africa — Organizing books for kids in Africa to read</li>
-        <li>
-          Foster Care Organization — Organizing clothes, toys, baby carriers, etc. donated by
-          people to give to families with foster care children
-        </li>
-      </ul>
-    </section>
-
-    <section id="courses">
-      <h2>Extra Courses</h2>
-      <p>Seth Bonder Course – Georgia Tech course which teaches basics of Python</p>
-    </section>
-
-    <section id="activities">
-      <h2>Clubs and Activities</h2>
-      <ul>
-        <li>Chess</li>
-        <li>Robotics</li>
-        <li>Badminton</li>
-      </ul>
-    </section>
-
-    <section id="hobbies">
-      <h2>Hobbies</h2>
-      <ul>
-        <li>Playing viola</li>
-        <li>Building PC</li>
-        <li>Exploring Tech</li>
-        <li>Content creation for social media</li>
-        <li>Volunteering for social causes</li>
-      </ul>
-    </section>
-
-    <section id="languages">
-      <h2>Languages</h2>
-      <ul>
-        <li>English</li>
-      </ul>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <p><strong>Technical:</strong> KiCad PCB Design, Fusion 360 CAD, Embedded C++ (Arduino/ESP32), FreeRTOS, SPI/I2S/UART protocols, MS-Office, AutoCAD, Java, HTML</p>
-      <ul>
-        <li>Good Listener</li>
-        <li>Problem Solver</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:sid.yemmela@gmail.com">sid.yemmela@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/sidyem-31458531b">linkedin.com/in/sidyem-31458531b</a></p>
-    </section>
+      <section>
+        <h3 class="section-title">Activities &amp; Hobbies</h3>
+        <div class="skills-grid">
+          <span class="tag">Chess</span>
+          <span class="tag">Robotics</span>
+          <span class="tag">Badminton</span>
+          <span class="tag">Viola</span>
+          <span class="tag">Building PCs</span>
+          <span class="tag">Exploring Tech</span>
+          <span class="tag">Content Creation</span>
+        </div>
+      </section>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Sid Yemmela</p>
+  <footer class="footer">
+    Made with ❤️ by Sid Yemmela
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
