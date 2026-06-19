@@ -6,8 +6,11 @@
 
 :root {
   --sidebar-width: 22rem;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration: 0.65s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --open-duration: 1.1s;
+  --tab-text-duration: 1.05s;
+  --tab-stagger: 0.14s;
 }
 
 body {
@@ -34,8 +37,13 @@ body {
   justify-content: center;
   padding: 2rem;
   transition:
-    width var(--duration) var(--ease-out),
-    border-color var(--duration) ease;
+    width var(--open-duration) var(--ease-out),
+    border-color var(--open-duration) ease,
+    background 0.6s ease;
+}
+
+.site.is-opening .sidebar {
+  background: radial-gradient(circle at 18% 50%, rgba(255, 255, 255, 0.04), transparent 55%);
 }
 
 .landing-inner {
@@ -46,9 +54,15 @@ body {
   gap: 2rem;
   width: 100%;
   max-width: 32rem;
+  will-change: transform, max-width;
   transition:
-    max-width var(--duration) var(--ease-out),
-    transform var(--duration) var(--ease-out);
+    max-width var(--open-duration) var(--ease-out),
+    transform var(--open-duration) var(--ease-out),
+    gap var(--open-duration) var(--ease-out);
+}
+
+.site.is-opening .landing-inner {
+  animation: landingSlideLeft var(--open-duration) var(--ease-out) forwards;
 }
 
 .landing-name {
@@ -57,20 +71,14 @@ body {
   letter-spacing: -0.03em;
   line-height: 1.15;
   transition:
-    font-size var(--duration) var(--ease-out),
-    transform var(--duration) var(--ease-out),
-    opacity 0.4s ease;
+    font-size var(--open-duration) var(--ease-out),
+    letter-spacing var(--open-duration) var(--ease-out),
+    transform var(--open-duration) var(--ease-out),
+    opacity 0.5s ease;
 }
 
-.landing-role {
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.65);
-  margin-top: -1rem;
-  transition:
-    font-size var(--duration) var(--ease-out),
-    opacity 0.4s ease 0.05s,
-    transform var(--duration) var(--ease-out);
+.site.is-opening .landing-name {
+  animation: nameSettle var(--open-duration) var(--ease-out) forwards;
 }
 
 .landing-tabs {
@@ -79,6 +87,18 @@ body {
   gap: 0.75rem;
   width: 100%;
   margin-top: 0.5rem;
+}
+
+.site.is-opening .nav-tab {
+  animation: navReveal 0.7s var(--ease-out) backwards;
+}
+
+.site.is-opening .nav-tab:nth-child(1) { animation-delay: 0.45s; }
+.site.is-opening .nav-tab:nth-child(2) { animation-delay: 0.58s; }
+.site.is-opening .nav-tab:nth-child(3) { animation-delay: 0.71s; }
+
+.site.is-opening .landing-social {
+  animation: navReveal 0.7s var(--ease-out) 0.82s backwards;
 }
 
 .nav-tab {
@@ -131,9 +151,6 @@ body {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
-  transition:
-    opacity 0.4s ease 0.1s,
-    transform var(--duration) var(--ease-out);
 }
 
 .landing-social a {
@@ -164,12 +181,23 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateX(48px);
+  transform: translateX(64px);
+  filter: blur(6px);
   transition:
-    opacity 0.55s ease 0.12s,
-    transform 0.65s var(--ease-out) 0.12s,
-    margin-left var(--duration) var(--ease-out),
-    visibility 0s linear 0.65s;
+    opacity 0.7s ease 0.28s,
+    transform 0.95s var(--ease-out) 0.28s,
+    filter 0.8s ease 0.28s,
+    margin-left var(--open-duration) var(--ease-out),
+    visibility 0s linear var(--open-duration);
+}
+
+.site.is-opening .content-panel {
+  transition:
+    opacity 0.85s ease 0.42s,
+    transform 1s var(--ease-out) 0.42s,
+    filter 0.85s ease 0.42s,
+    margin-left var(--open-duration) var(--ease-out),
+    visibility 0s linear 0s;
 }
 
 .panel {
@@ -181,20 +209,37 @@ body {
   display: block;
 }
 
-.panel-animate > * {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: riseIn 0.55s var(--ease-out) forwards;
+.panel-leaving {
+  animation: panelFadeOut 0.35s var(--ease-in-out) forwards;
 }
 
-.panel-animate > *:nth-child(1) { animation-delay: 0.08s; }
-.panel-animate > *:nth-child(2) { animation-delay: 0.14s; }
-.panel-animate > *:nth-child(3) { animation-delay: 0.2s; }
-.panel-animate > *:nth-child(4) { animation-delay: 0.26s; }
-.panel-animate > *:nth-child(5) { animation-delay: 0.32s; }
-.panel-animate > *:nth-child(6) { animation-delay: 0.38s; }
-.panel-animate > *:nth-child(7) { animation-delay: 0.44s; }
-.panel-animate > *:nth-child(8) { animation-delay: 0.5s; }
+.panel-animate > * {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: riseIn var(--tab-text-duration) var(--ease-out) forwards;
+}
+
+.panel-animate-open > *:nth-child(1) { animation-delay: 0.5s; }
+.panel-animate-open > *:nth-child(2) { animation-delay: 0.62s; }
+.panel-animate-open > *:nth-child(3) { animation-delay: 0.74s; }
+.panel-animate-open > *:nth-child(4) { animation-delay: 0.86s; }
+.panel-animate-open > *:nth-child(5) { animation-delay: 0.98s; }
+.panel-animate-open > *:nth-child(6) { animation-delay: 1.1s; }
+.panel-animate-open > *:nth-child(7) { animation-delay: 1.22s; }
+.panel-animate-open > *:nth-child(8) { animation-delay: 1.34s; }
+
+.panel-animate-switch > *:nth-child(1) { animation-delay: 0.12s; }
+.panel-animate-switch > *:nth-child(2) { animation-delay: calc(0.12s + var(--tab-stagger)); }
+.panel-animate-switch > *:nth-child(3) { animation-delay: calc(0.12s + var(--tab-stagger) * 2); }
+.panel-animate-switch > *:nth-child(4) { animation-delay: calc(0.12s + var(--tab-stagger) * 3); }
+.panel-animate-switch > *:nth-child(5) { animation-delay: calc(0.12s + var(--tab-stagger) * 4); }
+.panel-animate-switch > *:nth-child(6) { animation-delay: calc(0.12s + var(--tab-stagger) * 5); }
+.panel-animate-switch > *:nth-child(7) { animation-delay: calc(0.12s + var(--tab-stagger) * 6); }
+.panel-animate-switch > *:nth-child(8) { animation-delay: calc(0.12s + var(--tab-stagger) * 7); }
+
+.panel-animate-switch > * {
+  animation-duration: 1.15s;
+}
 
 .section-title {
   font-size: clamp(2rem, 4vw, 2.75rem);
@@ -272,15 +317,15 @@ body {
 
 .site.is-open .landing-inner {
   max-width: 16rem;
-  transform: translateX(-8%);
+  transform: translateX(-10%);
+}
+
+.site.is-open:not(.is-opening) .landing-inner {
+  animation: none;
 }
 
 .site.is-open .landing-name {
   font-size: 1.5rem;
-}
-
-.site.is-open .landing-role {
-  font-size: 0.9rem;
 }
 
 .site.is-open .content-panel {
@@ -289,10 +334,21 @@ body {
   visibility: visible;
   pointer-events: auto;
   transform: translateX(0);
+  filter: blur(0);
   transition:
-    opacity 0.55s ease 0.18s,
-    transform 0.65s var(--ease-out) 0.18s,
-    margin-left var(--duration) var(--ease-out),
+    opacity 0.7s ease 0.28s,
+    transform 0.95s var(--ease-out) 0.28s,
+    filter 0.8s ease 0.28s,
+    margin-left var(--open-duration) var(--ease-out),
+    visibility 0s linear 0s;
+}
+
+.site.is-open.is-opening .content-panel {
+  transition:
+    opacity 0.85s ease 0.42s,
+    transform 1s var(--ease-out) 0.42s,
+    filter 0.85s ease 0.42s,
+    margin-left var(--open-duration) var(--ease-out),
     visibility 0s linear 0s;
 }
 
@@ -300,10 +356,70 @@ body {
   transform: translateX(6px);
 }
 
+@keyframes landingSlideLeft {
+  0% {
+    transform: translateX(0) scale(1);
+    max-width: 32rem;
+    gap: 2rem;
+  }
+
+  45% {
+    transform: translateX(-28vw) scale(0.96);
+    max-width: 24rem;
+  }
+
+  100% {
+    transform: translateX(-10%) scale(1);
+    max-width: 16rem;
+    gap: 1.75rem;
+  }
+}
+
+@keyframes nameSettle {
+  0% {
+    letter-spacing: -0.03em;
+    transform: scale(1);
+  }
+
+  50% {
+    letter-spacing: 0.02em;
+    transform: scale(0.97);
+  }
+
+  100% {
+    letter-spacing: -0.02em;
+    transform: scale(1);
+  }
+}
+
+@keyframes navReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes panelFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
 @keyframes riseIn {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px);
   }
 
   to {
@@ -313,6 +429,20 @@ body {
 }
 
 @media (max-width: 768px) {
+  .site.is-opening .landing-inner {
+    animation: landingSlideUp var(--open-duration) var(--ease-out) forwards;
+  }
+
+  @keyframes landingSlideUp {
+    from {
+      transform: translateY(0) scale(1);
+    }
+
+    to {
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
   .site.is-open .sidebar {
     position: relative;
     width: 100%;
@@ -338,10 +468,6 @@ body {
 @media (max-width: 480px) {
   .landing-name {
     font-size: 1.75rem;
-  }
-
-  .landing-role {
-    font-size: 1rem;
   }
 }
 
